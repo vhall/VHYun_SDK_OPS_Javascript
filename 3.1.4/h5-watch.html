@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;" name="viewport" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>文档+直播(H5)</title>
+    <link rel="stylesheet" href="./css/h5.css" />
+    <script src="//cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
+    <script src="//cdn.bootcss.com/eruda/1.5.7/eruda.min.js"></script>
+    
+    <script type="text/javascript" src="https://static.vhallyun.com/jssdk/vhall-jssdk-player/latest/vhall-jssdk-player-2.2.3.js"></script>
+    
+    <script type="text/javascript" src="https://static.vhallyun.com/jssdk/vhall-jssdk-publish/latest/vhall-jssdk-publisher-2.1.2.js"></script>
+    
+    <script type="text/javascript" src="https://cdn.bootcss.com/qs/6.8.0/qs.js"></script>
+    <script src="./js/h5-common.js"></script>
+    <script src="./js/h5-watch.js"></script>
+  </head>
+  <body>
+    <div class="login">
+      <section>
+        <h2>文档+直播(H5)</h2>
+        <div class="form">
+          <!-- appId -->
+          <div class="form-item">
+            <label class="form-item-label">AppID</label>
+            <div class="form-item-input-container">
+              <!-- <option value="http://www.baidu.com/"> </option> -->
+              <input
+                id="appId"
+                type="text"
+                class="form-item-input"
+                list="appIdSearchList"
+                value="d317f559"
+              />
+              <datalist id="appIdSearchList"> </datalist>
+            </div>
+          </div>
+
+          <!-- channelId -->
+          <div class="form-item">
+            <label class="form-item-label">ChannelID</label>
+            <div class="form-item-input-container">
+              <input
+                id="channelId"
+                type="text"
+                class="form-item-input"
+                list="channelIdSearchList"
+                value="ch_1a348b67"
+              />
+              <datalist id="channelIdSearchList"> </datalist>
+            </div>
+          </div>
+          <!-- roomId -->
+          <div class="form-item">
+            <label class="form-item-label">RoomID</label>
+            <div class="form-item-input-container">
+              <input
+                id="roomId"
+                type="text"
+                class="form-item-input"
+                list="roomIdSearchList"
+                value="lss_706f5237"
+              />
+              <datalist id="roomIdSearchList"> </datalist>
+            </div>
+          </div>
+
+          <!-- accoundId -->
+          <div class="form-item">
+            <label class="form-item-label">AccountID</label>
+            <div class="form-item-input-container">
+              <input
+                id="accountId"
+                type="text"
+                class="form-item-input"
+                list="accountIdSearchList"
+                value="406"
+              />
+              <datalist id="accountIdSearchList"> </datalist>
+            </div>
+          </div>
+
+          <!-- token -->
+          <div class="form-item">
+            <label class="form-item-label">Token</label>
+            <div class="form-item-input-container">
+              <input
+                id="token"
+                type="text"
+                class="form-item-input"
+                value="access:d317f559:75107dced08acdb1"
+              />
+            </div>
+          </div>
+        </div>
+        <button class="btn-start">开始演示</button>
+      </section>
+    </div>
+    <div class="main">
+      <section>
+        <div class="video-container" id="video"></div>
+        <div class="document-container"></div>
+      </section>
+    </div>
+  <script type="text/javascript" src="vhall-jssdk-doc-3.1.4.js"></script></body>
+</html>

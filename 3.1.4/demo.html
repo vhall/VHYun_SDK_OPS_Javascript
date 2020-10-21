@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>文档+直播(主持端)</title>
+    <link rel="stylesheet" href="./layui/css/layui.css" />
+    <link rel="stylesheet" href="//at.alicdn.com/t/font_1244131_zjcg4i56rkq.css" />
+    <link rel="stylesheet" href="./css/demo.css" />
+  </head>
+
+  <body>
+    <div class="login" style="display: flex">
+      <div class="box">
+        <h2>文档+直播(主持端)</h2>
+        <div class="layui-form">
+          <div class="layui-form-item">
+            <label class="layui-form-label">appId</label>
+            <div class="layui-input-block">
+              <input
+                type="text"
+                name="appId"
+                value="d317f559"
+                class="layui-input"
+              />
+            </div>
+          </div>
+          <div class="layui-form-item">
+            <label class="layui-form-label">channelId</label>
+            <div class="layui-input-block">
+              <input
+                type="text"
+                name="channelId"
+                value="ch_1a348b67"
+                class="layui-input"
+              />
+            </div>
+          </div>
+          <div class="layui-form-item">
+            <label class="layui-form-label">roomId</label>
+            <div class="layui-input-block">
+              <input
+                type="text"
+                name="roomId"
+                value="lss_706f5237"
+                class="layui-input"
+              />
+            </div>
+          </div>
+          <div class="layui-form-item">
+            <label class="layui-form-label">accountId</label>
+            <div class="layui-input-block">
+              <input
+                type="text"
+                name="accountId"
+                value="405"
+                required
+                lay-verify="required"
+                autocomplete="off"
+                class="layui-input"
+              />
+            </div>
+          </div>
+          <div class="layui-form-item">
+            <label class="layui-form-label">token</label>
+            <div class="layui-input-block">
+              <input
+                type="text"
+                name="token"
+                value="access:d317f559:75107dced08acdb1"
+                required
+                lay-verify="required"
+                autocomplete="off"
+                class="layui-input"
+              />
+            </div>
+          </div>
+          <div class="layui-form-item">
+            <label class="layui-form-label">继续直播？</label>
+            <div class="layui-input-block">
+              <input type="radio" name="iscontinue" value="yes" title="是" checked />
+              <input type="radio" name="iscontinue" value="no" title="否" />
+            </div>
+          </div>
+          <div class="layui-form-item">
+            <div class="layui-input-block">
+              <button class="layui-btn layui-btn-normal" lay-submit lay-filter="formDemo">开始演示</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="main" style="display: none">
+      <div class="layui-nav toolBox">
+        <li class="layui-nav-item tool">
+          <span class="iconfont icon-tools" title="工具"></span>
+          <dl class="layui-nav-child">
+            <dd><span class="iconfont icon-text">文字</span></dd>
+            <dd><span class="iconfont icon-pen" title="画笔"></span></dd>
+            <dd>
+              <span class="iconfont icon-highlighters" title="荧光笔"></span>
+            </dd>
+            <dd><span class="iconfont icon-square" title="方形"></span></dd>
+            <dd><span class="iconfont icon-circle" title="圆形"></span></dd>
+            <dd>
+              <span class="iconfont icon-isoscelesTriangle" title="等腰三角形"></span>
+            </dd>
+            <dd>
+              <span class="iconfont icon-rightTriangle" title="直角三角形"></span>
+            </dd>
+            <dd>
+              <span class="iconfont icon-singleArrow" title="单箭头"></span>
+            </dd>
+            <dd>
+              <span class="iconfont icon-doubleArrow" title="双箭头"></span>
+            </dd>
+            <dd>
+              <span class="iconfont icon-eraser" title="橡皮"></span>
+            </dd>
+            <dd><span class="iconfont icon-clear" title="清空画布"></span></dd>
+            <dd><span class="iconfont icon-ban" title="取消画笔"></span></dd>
+          </dl>
+        </li>
+        <li class="layui-nav-item">
+          <div id="color"></div>
+        </li>
+        <li class="layui-nav-item size">
+          <span>大小</span>
+          <dl class="layui-nav-child">
+            <dd><span data-value="5">5px</span></dd>
+            <dd><span data-value="10">10px</span></dd>
+            <dd><span data-value="15">15px</span></dd>
+            <dd><span data-value="20">20px</span></dd>
+            <dd><span data-value="30">30px</span></dd>
+          </dl>
+        </li>
+        <li class="layui-nav-item zoom">
+          <span>缩放</span>
+          <dl class="layui-nav-child">
+            <dd><span data-value="zoomIn">放大</span></dd>
+            <dd><span data-value="zoomOut">缩小</span></dd>
+            <dd><span data-value="move">移动</span></dd>
+            <dd><span data-value="reset">还原</span></dd>
+            <dd><span data-value="cancel">取消</span></dd>
+          </dl>
+        </li>
+        <li class="layui-nav-item pushStream">
+          <span>推流</span>
+        </li>
+        <li class="layui-nav-item stopStream">
+          <span>停止推流</span>
+        </li>
+        <li class="layui-nav-item localRole">
+          <span>本地权限设置</span>
+          <dl class="layui-nav-child">
+            <dd><span data-value="HOST">主讲人</span></dd>
+            <dd><span data-value="GUEST">嘉宾</span></dd>
+            <dd><span data-value="SPECTATOR">普通观众</span></dd>
+            <dd><span data-value="ASSISTANT">助理</span></dd>
+          </dl>
+        </li>
+        <li class="layui-nav-item">
+          <div class="layui-form switchBox">
+            <div class="layui-form-item">
+              <div class="layui-input-block">
+                <input type="checkbox" name="switch" lay-skin="switch" lay-filter="switch" lay-text="演示|关闭" />
+              </div>
+            </div>
+          </div>
+        </li>
+      </div>
+      <!-- <div class="layui-form switchBox">
+      <div class="layui-form-item">
+        <label class="layui-form-label" style="width:auto;">观看端演示开关</label>
+        <div class="layui-input-block">
+          <input type="checkbox" name="switch" lay-skin="switch" lay-filter="switch" lay-text="演示|关闭">
+        </div>
+      </div>
+    </div> -->
+      <div class="control-box">
+        <div class="add">
+          <button type="button" class="layui-btn layui-btn-primary addBtn" id="addBtn">
+            <i class="layui-icon">&#xe654;</i>
+          </button>
+        </div>
+      </div>
+      <div class="board-box"></div>
+      <div id="live" class="live-box"></div>
+    </div>
+    <div class="createBox" style="display: none">
+      <div class="layui-form">
+        <div class="layui-form-item">
+          <label class="layui-form-label">类型：</label>
+          <div class="layui-input-block" style="display: flex; flex-direction: row; align-items: center">
+            <select name="type" lay-verify="required" lay-filter="type">
+              <option value="board">白板</option>
+              <option value="document-static">静态文档</option>
+              <option value="document-animation">动态文档</option>
+            </select>
+          </div>
+        </div>
+        <div class="layui-form-item docId" style="display: none">
+          <label class="layui-form-label">文档ID</label>
+          <div class="layui-input-block">
+            <input
+              type="text"
+              name="docId"
+              lay-verify="title"
+              autocomplete="off"
+              class="layui-input"
+              value="835f28d6"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  <script type="text/javascript" src="vhall-jssdk-doc-3.1.4.js"></script></body>
+  <script src="//cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
+  <script src=" ./layui/layui.all.js"></script>
+  
+  <script type="text/javascript" src="https://static.vhallyun.com/jssdk/vhall-jssdk-player/latest/vhall-jssdk-player-2.2.3.js"></script>
+  
+  <script type="text/javascript" src="https://static.vhallyun.com/jssdk/vhall-jssdk-publish/latest/vhall-jssdk-publisher-2.1.2.js"></script>
+  
+  <script type="text/javascript" src="https://cdn.bootcss.com/qs/6.8.0/qs.js"></script>
+  <script src="./js/demo.js"></script>
+</html>

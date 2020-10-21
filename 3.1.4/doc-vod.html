@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>文档+点播</title>
+    <script src="./js/pc-common.js"></script>
+    <script>
+      if (judgePlatform() === 'mobile') {
+        location.pathname = location.pathname.replace(/doc-vod.html/g, 'h5-doc-vod.html');
+      }
+    </script>
+    <link rel="stylesheet" href="./layui/css/layui.css" />
+    <link rel="stylesheet" href="./css/demo.css" />
+    <style type="text/css">
+      .hidden {
+        visibility: hidden;
+      }
+      .visable {
+        visibility: visible;
+      }
+      .chapters {
+        max-height: 100px;
+      }
+    </style>
+    <script src="//cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
+    <script src=" ./layui/layui.all.js"></script>
+    
+    <script type="text/javascript" src="https://static.vhallyun.com/jssdk/vhall-jssdk-player/latest/vhall-jssdk-player-2.2.3.js"></script>
+    
+    <script type="text/javascript" src="https://cdn.bootcss.com/qs/6.8.0/qs.js"></script>
+    <script src="./js/doc-vod.js"></script>
+    <style>
+      body {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="login" style="display: flex">
+      <div class="box">
+        <h2>文档+点播</h2>
+        <div class="layui-form">
+          <div class="layui-form-item">
+            <label class="layui-form-label">appId</label>
+            <div class="layui-input-block">
+              <input
+                type="text"
+                name="appId"
+                value="d317f559"
+                required
+                lay-verify="required"
+                autocomplete="off"
+                class="layui-input"
+              />
+            </div>
+          </div>
+          <!--          <div class="layui-form-item">-->
+          <!--            <label class="layui-form-label">channelId</label>-->
+          <!--            <div class="layui-input-block">-->
+          <!--              <input-->
+          <!--                type="text"-->
+          <!--                name="channelId"-->
+          <!--                value="ch_1a348b67"-->
+          <!--                required-->
+          <!--                lay-verify="required"-->
+          <!--                autocomplete="off"-->
+          <!--                class="layui-input"-->
+          <!--              />-->
+          <!--            </div>-->
+          <!--          </div>-->
+          <div class="layui-form-item">
+            <label class="layui-form-label">recordId</label>
+            <div class="layui-input-block">
+              <input
+                type="text"
+                name="recordId"
+                value="e8ba87b0"
+                required
+                lay-verify="required"
+                autocomplete="off"
+                class="layui-input"
+              />
+            </div>
+          </div>
+          <div class="layui-form-item">
+            <label class="layui-form-label">accountId</label>
+            <div class="layui-input-block">
+              <input
+                type="text"
+                name="accountId"
+                value="406"
+                required
+                lay-verify="required"
+                autocomplete="off"
+                class="layui-input"
+              />
+            </div>
+          </div>
+          <div class="layui-form-item">
+            <label class="layui-form-label">token</label>
+            <div class="layui-input-block">
+              <input
+                type="text"
+                name="token"
+                value="access:d317f559:75107dced08acdb1"
+                required
+                lay-verify="required"
+                autocomplete="off"
+                class="layui-input"
+              />
+            </div>
+          </div>
+          <div class="layui-form-item">
+            <div class="layui-input-block">
+              <button class="layui-btn layui-btn-normal" lay-submit lay-filter="formDemo">开始演示</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="main" style="display: none">
+      <div class="control-box"></div>
+      <div class="board-box">
+        <div id="xxx"></div>
+      </div>
+      <div class="video-box" id="video"></div>
+    </div>
+    <footer id="chapters" class="chapters"></footer>
+  <script type="text/javascript" src="vhall-jssdk-doc-3.1.4.js"></script></body>
+</html>

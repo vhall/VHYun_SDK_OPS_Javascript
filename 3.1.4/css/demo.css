@@ -1,0 +1,229 @@
+body {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  height: 100vh;
+  align-items: center;
+}
+
+.login {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background: #f0f2f5;
+}
+
+.login .box {
+  width: 400px;
+  background: #fff;
+  box-shadow: 1px 1px 1px #fff;
+  padding: 10px;
+}
+
+.layui-input-block {
+}
+
+.layui-nav-bar {
+  display: none !important;
+}
+
+.layui-colorpicker {
+  border: none;
+}
+
+.login .box h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.main {
+  width: 800px;
+}
+
+.live-box,
+#video {
+  width: 300px;
+  height: 156px;
+  background: #000000;
+  position: absolute !important;
+  left: 0;
+  top: 0;
+  z-index: 1;
+}
+
+.main .toolBox {
+  position: absolute;
+  padding: 0 10px;
+  top: 0;
+  right: 0;
+}
+
+.main .toolBox .layui-nav-item {
+  cursor: pointer;
+}
+
+.main .switchBox .layui-form-item {
+  margin-bottom: 0;
+}
+
+.main .switchBox .layui-form-item .layui-input-block {
+  margin-left: 0;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.main .switchBox .layui-form-item .layui-form-switch {
+  margin-top: 0;
+}
+
+.main .control-box {
+  display: flex;
+  flex-direction: row;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  position: relative;
+  z-index: 999;
+}
+
+.main .control-box span {
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  display: inline-block;
+  height: 38px;
+  line-height: 38px;
+  padding: 0 18px;
+  background-color: #009688;
+  color: #fff;
+  white-space: nowrap;
+  text-align: center;
+  font-size: 14px;
+  border: none;
+  cursor: pointer;
+}
+
+.main .control-box span.active {
+  background: #1e9fff;
+}
+
+.main .control-box span i.icon-close {
+  margin-left: 10px;
+}
+
+.main .board-box {
+  position: relative;
+  width: 800px;
+  height: 600px;
+  z-index: 999;
+  overflow: hidden;
+}
+
+.main .board-box > div {
+  position: relative;
+}
+
+.main .board-box .page-box {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  position: absolute;
+  bottom: 4px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 999;
+  background: rgba(0, 0, 0, 0.8);
+  padding: 5px 10px;
+  display: flex;
+  flex-direction: row;
+}
+
+.main .board-box .page-box span.iconfont {
+  color: #fff;
+  cursor: pointer;
+  font-size: 25px;
+  margin: 0 5px;
+}
+
+.main .board-box .page-box .page-text {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin: 0 10px;
+}
+
+.main .board-box .page-box .page-text input {
+  width: 50px;
+  background: transparent;
+  border: 1px solid #ccc;
+  text-align: center;
+  color: #fff;
+}
+
+.main .board-box .page-box .page-text i {
+  color: #fff;
+  margin: 0 5px;
+}
+
+.main .board-box .page-box .page-text span {
+  color: #fff;
+}
+
+.setPenBox,
+.setSquareBox,
+.setCircleBox,
+.setIsoscelesTriangleBox,
+.setRightTriangleBox,
+.setSingleArrowBox,
+.setDoubleArrowBox {
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.setPenBox input[name='penSize'] {
+  width: 80px;
+  margin-right: 5px;
+}
+
+.layui-nav .layui-nav-item {
+  line-height: 30px;
+  min-width: 45px;
+  text-align: center;
+}
+
+.layui-nav-child {
+  top: 35px;
+}
+
+.layui-nav-child dd span {
+  width: 100%;
+  display: block;
+  text-align: center;
+  color: #000000;
+  cursor: pointer;
+}
+
+.createBox {
+  padding: 20px;
+}
+
+.createBox .layui-input {
+  width: 212px;
+}
+.localRole {
+  margin: 0 10px;
+}
