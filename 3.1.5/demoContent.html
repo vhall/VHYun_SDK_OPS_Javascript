@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0 " />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <title>主持端</title>
+    <link rel="icon" href="https://www.vhallyun.com/favicon.ico" />
+    <link rel="stylesheet" href="./layui/css/layui.css" />
+    <link rel="stylesheet" href="./css/demoContent.css?time=1609319427353" />
+  </head>
+  <body>
+    <div class="body-box">
+      <header>
+        <div class="host-exclusive">
+          <form action="" class="layui-form">
+            <div class="layui-form-item">
+              <label class="layui-form-label">文档演示开关</label>
+              <div class="layui-input-block">
+                <input type="checkbox" name="switch" lay-skin="switch" lay-filter="switch" checked />
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="header-right host-exclusive">
+          <div>
+            <b>
+              <span>
+                <i></i>
+              </span>
+            </b>
+
+            <span id="pusherTime">00:00:00</span>
+          </div>
+          <div><button class="layui-btn" id="pusherStart">开始直播</button><button class="layui-btn" id="pusherStop">结束直播</button></div>
+        </div>
+      </header>
+      <section class="section">
+        <!-- 文档区域 -->
+        <section>
+          <ul class="title doc-container" id="doc-title">
+            <li class="add host-exclusive" id="addDoc">
+              <span> <i></i> <i></i> </span> 添加
+            </li>
+          </ul>
+          <div class="doc-box">
+            <div class="template" id="template">
+              <div class="brush-box" id="brushBox">
+                <ul class="brush-type">
+                  <li class="tool" type="brush" detail="setText">
+                    <div class="brush">
+                      <img src="./images/icon-A.png" alt="" srcset="" />
+                      <img src="./images/icon-Ahover.png" alt="" srcset="" />
+                    </div>
+                    <div class="alt">文字</div>
+                  </li>
+                  <li>
+                    <div class="brush">
+                      <img src="./images/icon-square.png" alt="" srcset="" />
+                      <img src="./images/icon-squareHover.png" alt="" srcset="" />
+                    </div>
+                    <div class="brush-list-box">
+                      <ul class="brush-list">
+                        <li class="tool" type="brush" detail="setSquare">
+                          <img src="./images/icon-small-square.png" alt="" srcset="" />
+                          <div class="alt-right">矩形</div>
+                        </li>
+                        <li class="tool" type="brush" detail="setIsoscelesTriangle">
+                          <img src="./images/icon-isoscelesTriangle.png" alt="" srcset="" />
+                          <div class="alt-right">等腰三角形</div>
+                        </li>
+                        <li class="tool" type="brush" detail="setRightTriangle">
+                          <img src="./images/icon-rightTriangle.png" alt="" srcset="" />
+                          <div class="alt-right">直角三角形</div>
+                        </li>
+                        <li class="tool" type="brush" detail="setCircle">
+                          <img src="./images/icon-circle.png" alt="" srcset="" />
+                          <div class="alt-right">椭圆</div>
+                        </li>
+                      </ul>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="brush">
+                      <img src="./images/icon-singleArrow.png" alt="" srcset="" />
+                      <img src="./images/icon-singleArrowHover.png" alt="" srcset="" />
+                    </div>
+                    <div class="brush-list-box">
+                      <ul class="brush-list">
+                        <li class="tool" type="brush" detail="setSingleArrow">
+                          <img src="./images/icon-small-singleArrow.png" alt="" srcset="" />
+                          <div class="alt-right">单箭头</div>
+                        </li>
+                        <li class="tool" type="brush" detail="setDoubleArrow">
+                          <img src="./images/icon-doubleArrow.png" alt="" srcset="" />
+                          <div class="alt-right">双箭头</div>
+                        </li>
+                      </ul>
+                    </div>
+                  </li>
+                  <li class="tool" type="brush" detail="setPen">
+                    <div class="brush">
+                      <img src="./images/icon-pen.png" alt="" srcset="" />
+                      <img src="./images/icon-penHover.png" alt="" srcset="" />
+                    </div>
+                    <div class="alt">自由画笔</div>
+                  </li>
+                  <li class="tool" type="brush" detail="setHighlighters">
+                    <div class="brush">
+                      <img src="./images/icon-lightPen.png" alt="" srcset="" />
+                      <img src="./images/icon-lightPenHover.png" alt="" srcset="" />
+                    </div>
+                    <div class="alt">荧光笔</div>
+                  </li>
+                  <li>
+                    <div class="brush">
+                      <img src="./images/icon-PX.png" alt="" srcset="" />
+                      <img src="./images/icon-PXhover.png" alt="" srcset="" />
+                    </div>
+                    <div class="brush-list-box">
+                      <ul class="brush-list">
+                        <li class="tool" type="strokeWidth" detail="setStrokeWidth">
+                          <span>5</span>
+                          <div class="alt-right">画笔宽度</div>
+                        </li>
+                        <li class="tool" type="strokeWidth" detail="setStrokeWidth">
+                          <span>10</span>
+                          <div class="alt-right">画笔宽度</div>
+                        </li>
+                        <li class="tool" type="strokeWidth" detail="setStrokeWidth">
+                          <span>15</span>
+                          <div class="alt-right">画笔宽度</div>
+                        </li>
+                        <li class="tool" type="strokeWidth" detail="setStrokeWidth">
+                          <span>20</span>
+                          <div class="alt-right">画笔宽度</div>
+                        </li>
+                        <li class="tool" type="strokeWidth" detail="setStrokeWidth">
+                          <span>25</span>
+                          <div class="alt-right">画笔宽度</div>
+                        </li>
+                        <li class="tool" type="strokeWidth" detail="setStrokeWidth">
+                          <span>30</span>
+                          <div class="alt-right">画笔宽度</div>
+                        </li>
+                      </ul>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="brush">
+                      <img src="./images/icon-color.png" alt="" srcset="" />
+                      <img src="./images/icon-colorHover.png" alt="" srcset="" />
+                    </div>
+                    <div class="brush-list-box">
+                      <ul class="brush-list colors">
+                        <li class="tool" type="stroke" detail="setStroke">
+                          <div class="stroke"></div>
+                          <div class="alt-right">画笔颜色</div>
+                        </li>
+                        <li class="tool" type="stroke" detail="setStroke">
+                          <div class="stroke"></div>
+                          <div class="alt-right">画笔颜色</div>
+                        </li>
+                        <li class="tool" type="stroke" detail="setStroke">
+                          <div class="stroke"></div>
+                          <div class="alt-right">画笔颜色</div>
+                        </li>
+                        <li class="tool" type="stroke" detail="setStroke">
+                          <div class="stroke"></div>
+                          <div class="alt-right">画笔颜色</div>
+                        </li>
+                        <li class="tool" type="stroke" detail="setStroke">
+                          <div class="stroke"></div>
+                          <div class="alt-right">画笔颜色</div>
+                        </li>
+                        <li class="tool" type="stroke" detail="setStroke">
+                          <div class="stroke"></div>
+                          <div class="alt-right">画笔颜色</div>
+                        </li>
+                        <li class="tool" type="stroke" detail="setStroke">
+                          <div class="stroke"></div>
+                          <div class="alt-right">画笔颜色</div>
+                        </li>
+                        <li class="tool" type="stroke" detail="setStroke">
+                          <div class="stroke"></div>
+                          <div class="alt-right">画笔颜色</div>
+                        </li>
+                      </ul>
+                    </div>
+                  </li>
+                  <li class="tool" type="brush" detail="setEraser">
+                    <div class="brush">
+                      <img src="./images/icon-eraser.png" alt="" srcset="" />
+                      <img src="./images/icon-eraserHover.png" alt="" srcset="" />
+                    </div>
+                    <div class="alt">橡皮擦</div>
+                  </li>
+                  <li class="tool" type="brush" detail="clear">
+                    <div class="brush">
+                      <img src="./images/icon-remove.png" alt="" srcset="" />
+                      <img src="./images/icon-removeHover.png" alt="" srcset="" />
+                    </div>
+                    <div class="alt">全部删除</div>
+                  </li>
+                  <li class="tool" type="brush" detail="cancelDrawable">
+                    <div class="brush">
+                      <img src="./images/icon-back.png" alt="" srcset="" />
+                      <img src="./images/icon-backHover.png" alt="" srcset="" />
+                    </div>
+                    <div class="alt">取消画笔</div>
+                  </li>
+                </ul>
+              </div>
+              <div class="doc" id="docs"></div>
+              <div class="tool-box" id="toolBox">
+                <ul class="tool-type">
+                  <li class="host-exclusive" id="pageBox">
+                    <span class="tool" type="action" detail="prevStep"><img src="./images/icon-prev.png" alt="" /> <img src="./images/icon-prevHover.png" alt="" /></span>
+                    <span> <i id="currentPage">0</i> / <i id="totalPage">0</i> </span>
+                    <span class="tool" type="action" detail="nextStep"><img src="./images/icon-next.png" alt="" /> <img src="./images/icon-nextHover.png" alt="" /></span>
+                  </li>
+                  <li>
+                    <span class="tool" type="action" detail="zoomIn"><img src="./images/icon-zoomOut.png" alt="" /><img src="./images/icon-zoomOutHover.png" alt="" /></span>
+                  </li>
+                  <li class="tool" type="action" detail="zoomOut">
+                    <span><img src="./images/icon-zoomIn.png" alt="" /><img src="./images/icon-zoomInHover.png" alt="" /></span>
+                  </li>
+                  <li class="tool" type="action" detail="zoomReset">
+                    <span><img src="./images/icon-reset.png" alt="" /><img src="./images/icon-resetHover.png" alt="" /></span>
+                  </li>
+                  <li class="tool" type="action" detail="move">
+                    <span><img src="./images/icon-tapMove.png" alt="" /><img src="./images/icon-tapMoveHover.png" alt="" /></span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="default-doc" id="defaultDoc">
+              <img src="./images/icon-defaultDoc.png" alt="" srcset="" />
+            </div>
+          </div>
+        </section>
+        <!-- 播放器、目录区域 -->
+        <article class="right-area">
+          <div>
+            <div id="pusher" class="pusher"></div>
+            <div class="default-video-poster"><img src="./images/icon-defaultPush.png" alt="" srcset="" /></div>
+            <div class="video-mark">
+              <div class="top-mark"></div>
+              <div class="bottom-mark">
+                <form class="layui-form permission">
+                  <div class="layui-form-item">
+                    <div class="layui-input-block">
+                      <select name="permission" lay-verify="required">
+                        <option value="HOST">主持人</option>
+                        <option value="GUEST">嘉宾</option>
+                        <option value="SPECTATOR">普通观众</option>
+                        <option value="ASSISTANT">助理</option>
+                      </select>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+          <!-- 目录 -->
+          <div id="catalog">
+            <div class="catalog">目录</div>
+          </div>
+        </article>
+      </section>
+      <article class="dialog" id="dialog">
+        <div>
+          <div class="dialog-title">选择文档 <img id="closeDialog" src="./images/icon-close-dialog.png" alt="" srcset="" /></div>
+          <form class="layui-form" action="">
+            <div class="layui-form-item">
+              <label class="layui-form-label">文档类型</label>
+              <div class="layui-input-block input-width">
+                <select name="city" lay-verify="required" lay-filter="docType" id="selectContainer">
+                  <option value="board">白板</option>
+                  <option value="document-static">静态文档</option>
+                  <option value="document-animation">动态文档</option>
+                </select>
+              </div>
+            </div>
+            <div class="layui-form-item docId" id="docId">
+              <label class="layui-form-label">文档Id</label>
+              <div class="layui-input-block input-width">
+                <input type="text" name="docId" id="docIdInput" lay-verify="title" autocomplete="off" class="layui-input" value="835f28d6" />
+              </div>
+            </div>
+            <div class="layui-form-item">
+              <label class="layui-form-label">画笔类型</label>
+              <div class="layui-input-block input-width">
+                <select lay-verify="required" lay-filter="type" id="graphic">
+                  <option value="CANCEL">无</option>
+                  <option value="PEN">自由画笔</option>
+                  <option value="NITE_WHITE_PEN">荧光笔</option>
+                  <option value="SQUARE">矩形</option>
+                  <option value="CIRCLE">椭圆</option>
+                  <option value="TEXT">文字</option>
+                  <option value="ISOSCELES_TRIANGLE">等腰三角形</option>
+                  <option value="RIGHT_TRIANGLE">直角三角形</option>
+                  <option value="SINGLE_ARROW">单箭头</option>
+                  <option value="DOUBLE_ARROW">双箭头</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="layui-form-item">
+              <label class="layui-form-label">选择颜色</label>
+              <div class="layui-input-block">
+                <div id="defaultColor"></div>
+              </div>
+            </div>
+
+            <div class="layui-form-item">
+              <label class="layui-form-label">画笔颜色</label>
+              <div class="layui-input-block input-width">
+                <input id="stroke" type="text" name="stroke" lay-verify="title" autocomplete="off" class="layui-input" value="#000000" />
+              </div>
+            </div>
+            <div class="layui-form-item">
+              <label class="layui-form-label">线条宽度</label>
+              <div class="layui-input-block input-width">
+                <input id="strokeWidth" type="number" name="strokeWidth" lay-verify="strokeWidth" autocomplete="off" class="layui-input" value="4" />
+              </div>
+            </div>
+
+            <div class="footer">
+              <button type="button" class="layui-btn" id="cancelCreate">取消</button>
+              <button type="button" lay-submit lay-filter="dialog" class="layui-btn" id="sureCreate">确定</button>
+            </div>
+          </form>
+        </div>
+      </article>
+    </div>
+  <script type="text/javascript" src="vhall-jssdk-doc-3.1.5.js"></script></body>
+  
+  <script type="text/javascript" src="https://static.vhallyun.com/jssdk/vhall-jssdk-player/latest/vhall-jssdk-player-2.2.9.js?time=1609319427353"></script>
+  
+  <script type="text/javascript" src="https://static.vhallyun.com/jssdk/vhall-jssdk-publish/latest/vhall-jssdk-publisher-2.1.2.js?time=1609319427353"></script>
+  
+  <script src="./js/jQuery.min.js"></script>
+  <script src=" ./layui/layui.all.js"></script>
+  <script type="text/javascript" src="./js/Qs.min.js"></script>
+  <script src="./js/demoContent.js?time=1609319427353"></script>
+</html>

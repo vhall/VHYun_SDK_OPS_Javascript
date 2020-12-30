@@ -1,0 +1,53 @@
+html,
+body {
+  font-family: PingFangSC-Regular;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+.layui-form-radio > i:hover,
+.layui-form-radioed > i,
+.layui-btn-normal {
+  color: #1e89e4;
+}
+.layui-form-label,
+.layui-input {
+  color: #666;
+}
+.html-type {
+  display: none;
+}
+body {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+body > section {
+  width: 404px;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1), 0 10px 20px 0 rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+  padding-top: 32px;
+}
+body > section > .title {
+  font-family: PingFangSC-Medium;
+  font-size: 20px;
+  color: #333;
+  line-height: 24px;
+  text-align: center;
+  margin-bottom: 32px;
+}
+body > section .input-width {
+  width: 254px;
+}
+body > section .footer {
+  text-align: center;
+  margin-bottom: 40px;
+}
+body > section .footer button {
+  width: 180px;
+  height: 40px;
+  color: white;
+  border-radius: 4px;
+}
