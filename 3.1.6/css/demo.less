@@ -1,0 +1,47 @@
+@import './base.less';
+.layui-form-radio > i:hover,
+.layui-form-radioed > i,
+.layui-btn-normal {
+  color: @baseBackground;
+}
+.layui-form-label,
+.layui-input {
+  color: @textColor;
+}
+.html-type {
+  display: none;
+}
+body {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  > section {
+    width: 404px;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1), 0 10px 20px 0 rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+    padding-top: 32px;
+    > .title {
+      font-family: PingFangSC-Medium;
+      font-size: 20px;
+      color: @titleColor;
+      line-height: 24px;
+      text-align: center;
+      margin-bottom: 32px;
+    }
+    .input-width {
+      width: 254px;
+    }
+    .footer {
+      text-align: center;
+      margin-bottom: 40px;
+      button {
+        width: 180px;
+        height: 40px;
+        color: white;
+        border-radius: 4px;
+      }
+    }
+  }
+}
