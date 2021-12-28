@@ -95,7 +95,7 @@ function bindDocEvent() {
       layer.msg('上一文档尚未加载完成，请稍后点击');
       return;
     }
-    $('#dialog').show();
+    $('#dialog').css({ display: 'flex' });
   });
   $('#closeDialog').click(function () {
     $('#dialog').hide();
@@ -239,6 +239,8 @@ function bindDocEvent() {
       }
     } else {
       $('#defaultDoc').show();
+      $('#brushBox').hide();
+      $('#toolBox').hide();
     }
     if ($('#docs>div').length > 3) {
       $('#addDoc').hide();
