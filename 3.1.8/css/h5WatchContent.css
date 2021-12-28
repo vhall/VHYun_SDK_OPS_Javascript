@@ -84,10 +84,8 @@ ul {
   height: calc((100vw - 32px) * 9 / 16);
 }
 .section .box .doc-list .reset {
-  display: none;
   position: absolute;
   right: 7px;
-  bottom: -30px;
   z-index: 20;
 }
 .section .box .doc-list .reset img {

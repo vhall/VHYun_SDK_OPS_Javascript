@@ -11,6 +11,9 @@ body {
   min-width: @boxWidth;
   min-height: @boxHeight;
 }
+.doc-single {
+  overflow: visible !important;
+}
 header {
   background-color: @gray;
   display: flex;
@@ -173,6 +176,7 @@ header {
       flex-grow: 1;
       position: relative;
       background-color: #0f0f0f;
+      overflow: hidden;
       .template {
         position: absolute;
         width: calc(@boxWidth - 410px);
@@ -184,6 +188,7 @@ header {
           z-index: 10;
         }
         .brush-box {
+          margin-top: 10px;
           display: none;
           top: 10px;
           position: absolute;

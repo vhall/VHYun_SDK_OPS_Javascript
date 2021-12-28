@@ -2,7 +2,7 @@ var form = layui.form;
 var loading = layer.load(0, {
   shade: [0.1, '#fff']
 });
-var isRefresh = window.performance.navigation.type === 1;
+// var isRefresh = window.performance.navigation.type === 1;
 var param = Qs.parse(location.search, {
   ignoreQueryPrefix: true
 });
@@ -11,16 +11,16 @@ var channelId = param.channelId;
 var roomId = param.roomId;
 var accountId = param.accountId;
 var token = param.token;
-var docId = param.docId;
-var iscontinue = param.iscontinue;
+// var docId = param.docId;
+var iscontinue = param.iscontinue == 1;
 var publish;
 var sdk;
-var publishing = false;
+var publishing = sessionStorage.getItem('publishing') == 1;
 var timerInterval = null;
 var timing = 0;
 var canOperating = false;
 var docList = {};
-if (docId) $('input[name=docId]').val(paramObj['docId']);
+// if (docId) $('input[name=docId]').val(paramObj['docId']);
 layui.use('colorpicker', function () {
   var colorpicker = layui.colorpicker; // 常规使用
   colorpicker.render({
@@ -59,13 +59,15 @@ sdk = VHDocSDK.createInstance(
     hide: false
   },
   docSuccess,
-  function (err) {}
+  function (err) {
+    console.error(err);
+  }
 );
 /**
  * 初始化文档成功函数
  */
 function docSuccess() {
-  if (iscontinue != 1) sdk.resetContainer();
+  // if (iscontinue == 0) sdk.resetContainer();
   setTimeout(function () {
     sdk.getContainerInfo().then(function (res) {
       var list = res.list;
@@ -77,7 +79,9 @@ function docSuccess() {
         sdk.switchOffContainer();
       }
       form.render();
-      if (iscontinue == 1) loadRemoteBoard(list);
+      if (iscontinue == 1 || publishing) {
+        loadRemoteBoard(list);
+      }
     });
   }, 200);
 
@@ -216,7 +220,7 @@ function bindDocEvent() {
    */
   $('.doc-container').on('click', '.container img', function (event) {
     event.stopPropagation();
-    var elId = $(this).attr('doc-container');
+    let elId = $(this).attr('doc-container');
     sdk.destroyContainer({ id: elId });
     $(this).parent().remove();
     $('#' + elId).remove();
@@ -224,7 +228,7 @@ function bindDocEvent() {
       $('#' + elId + '-chapters').remove();
     }
     if ($('#docs>div').length > 0) {
-      var elId = $('#docs>div').eq(0).removeClass('hidden').attr('id');
+      let elId = $('#docs>div').eq(0).removeClass('hidden').attr('id');
       $('#doc-title>li[doc-container="' + elId + '"]').addClass('active');
       sdk.selectContainer({ id: elId });
       if (elId.indexOf('document') != -1) {
@@ -289,7 +293,7 @@ function bindDocEvent() {
   sdk.on(VHDocSDK.Event.PLAYBACKCOMPLETE, function (e) {
     console.warn('播放完毕');
     layer.msg('播放完毕');
-    playComplete = true;
+    // playComplete = true;
   });
 }
 
@@ -313,6 +317,10 @@ function initPusher() {
       console.log('推流初始化成功');
       publish = res.interface;
       bindPusherEvent();
+
+      if (publishing || iscontinue) {
+        $('#pusherStart').click();
+      }
     },
     function (e) {
       console.error(e);
@@ -324,8 +332,7 @@ function initPusher() {
  * */
 function bindPusherEvent() {
   $('#pusherStart').click(function () {
-    if (publishing) return;
-    publishing = true;
+    // if (publishing) return;
     var videoArr = publish.getDevices('video');
     var audioArr = publish.getDevices('audio');
     publish.startPush(
@@ -336,8 +343,16 @@ function bindPusherEvent() {
       function () {
         layer.msg('推流成功');
         calculagraph();
-        sdk.start();
-        // sdk.republish();
+
+        if (publishing) {
+          sdk.republish();
+        } else {
+          sdk.start();
+          publishing = true;
+
+          sessionStorage.setItem('publishing', 1);
+        }
+
         $('#pusherStart').hide();
         $('#pusherStop').show();
         $('#pusher').addClass('pushering');
@@ -354,6 +369,12 @@ function bindPusherEvent() {
       layer.msg('停止推流成功');
       sdk.start(2, 1);
       calculagraph('stop');
+      sdk.resetContainer();
+      $('.doc-container .container img').each(function () {
+        $(this).click();
+      });
+      sessionStorage.setItem('publishing', 0);
+
       $('#pusherStop').hide();
       $('#pusherStart').show();
       $('#pusher').removeClass('pushering');
@@ -373,7 +394,7 @@ function calculagraph(type = 'start') {
     var hour = parseInt(timing / 3600);
     var minute = parseInt((timing % 3600) / 60);
     var second = parseInt((timing % 300) % 60);
-    hour = hour >= 10 ? hours : '0' + hour;
+    hour = hour >= 10 ? hour : '0' + hour;
     minute = minute >= 10 ? minute : '0' + minute;
     second = second >= 10 ? second : '0' + second;
     $('#pusherTime').text(hour + ' : ' + minute + ' : ' + second);
@@ -459,7 +480,7 @@ function loadRemoteBoard(list) {
   $.each(list, function (index, item) {
     var cid = item.cid;
     var active = item.active;
-    var doc_type = item.doc_type;
+    // var doc_type = item.doc_type;
     var is_board = item.is_board;
     var docId = item.docId || '';
     var backgroundColor = item.backgroundColor || '#ccc';

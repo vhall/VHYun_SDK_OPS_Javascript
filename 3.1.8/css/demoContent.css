@@ -20,6 +20,9 @@ body {
   min-width: 1210px;
   min-height: 680px;
 }
+.doc-single {
+  overflow: visible !important;
+}
 header {
   background-color: #222;
   display: flex;
@@ -182,6 +185,7 @@ header .header-right > div:last-child button:last-child {
   flex-grow: 1;
   position: relative;
   background-color: #0f0f0f;
+  overflow: hidden;
 }
 .section > section .doc-box .template {
   position: absolute;
@@ -195,6 +199,7 @@ header .header-right > div:last-child button:last-child {
   z-index: 10;
 }
 .section > section .doc-box .template .brush-box {
+  margin-top: 10px;
   display: none;
   top: 10px;
   position: absolute;

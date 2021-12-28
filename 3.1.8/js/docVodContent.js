@@ -1,24 +1,24 @@
-var form = layui.form;
+// var form = layui.form;
 var loading = layer.load(0, {
   shade: [0.1, '#fff']
 });
-var isRefresh = window.performance.navigation.type === 1;
+// var isRefresh = window.performance.navigation.type === 1;
 var param = Qs.parse(location.search, {
   ignoreQueryPrefix: true
 });
 var appId = param.appId;
 var channelId = param.channelId;
-var roomId = param.roomId;
+// var roomId = param.roomId;
 var accountId = param.accountId;
 var token = param.token;
-var docId = param.docId;
-var iscontinue = param.iscontinue;
-var liveType = param.liveType;
+// var docId = param.docId;
+// var iscontinue = param.iscontinue;
+// var liveType = param.liveType;
 var recordId = param.recordId;
 var sdk;
-var canOperating = false;
+// var canOperating = false;
 var player = null;
-var docList = {};
+// var docList = {};
 sdk = VHDocSDK.createInstance(
   {
     appId: appId,
@@ -94,13 +94,14 @@ function bindDocEvent() {
   sdk.on(VHDocSDK.Event.ALL_COMPLETE, function () {
     console.log('所有文档加载完成');
     layer.msg('所有文档加载完成');
-    canOperating = true;
+    // canOperating = true;
     layer.close(loading);
   });
   sdk.on(VHDocSDK.Event.ERROR, function (e) {
     console.error(e);
   });
   sdk.on(VHDocSDK.Event.VOD_TIME_UPDATE, function (e) {
+    console.log(new Date());
     if (!e.watchOpen) {
       $('#doc-title').find('li').removeClass('active');
       // switch off
@@ -270,7 +271,7 @@ function calculagraph(timing) {
   var hour = parseInt(timing / 3600);
   var minute = parseInt((timing % 3600) / 60);
   var second = parseInt((timing % 300) % 60);
-  hour = hour >= 10 ? hours : '0' + hour;
+  hour = hour >= 10 ? hour : '0' + hour;
   minute = minute >= 10 ? minute : '0' + minute;
   second = second >= 10 ? second : '0' + second;
   return hour + ':' + minute + ':' + second;

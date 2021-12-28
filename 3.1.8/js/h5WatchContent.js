@@ -57,6 +57,9 @@ function bindDocEvent() {
   /**
    * 控制 tab 显示隐藏
    */
+  $('#reset').click(function () {
+    sdk.zoomReset();
+  });
   $('#showDocList').click(function () {
     $(this).addClass('active').siblings().removeClass('active');
     console.log('switchStatus', switchStatus);
@@ -206,7 +209,7 @@ function bindDocEvent() {
       sdk.selectContainer({
         id: e.id
       });
-      // sdk.zoomIn();
+      sdk.zoomIn();
     }, 100);
   });
 }
@@ -296,7 +299,7 @@ function loadRemoteBoard(list) {
     sdk.selectContainer({
       id: selectedCid
     });
-    // sdk.zoomIn();
+    sdk.zoomIn();
   }
 }
 function showToast(txt) {
