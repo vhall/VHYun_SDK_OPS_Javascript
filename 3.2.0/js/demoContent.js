@@ -57,6 +57,7 @@ sdk = VHDocSDK.createInstance(
     accountId: accountId,
     token: token,
     hide: false
+    // zoomFactors: [0.25, 1, 4, 100]
   },
   docSuccess,
   function (err) {
@@ -252,6 +253,17 @@ function bindDocEvent() {
       $('#addDoc').show();
     }
   });
+  sdk.on(VHDocSDK.Event.SCALE_TRIGGER, function (info) {
+    // console.log('info:', JSON.stringify(info));
+    if (info && info.scaleFactor) {
+      let scaleText = ((sdk.currentDoc && sdk.currentDoc.scaleFactor) * 100)
+      if (scaleText) {
+        // 有缩放操作，修改显示百分比
+        scaleText = scaleText + '%';
+        $('#scaleText').text(scaleText);
+      }
+    }
+  })
   /** 文档不存在事件 */
   sdk.on(VHDocSDK.Event.DOCUMENT_NOT_EXIT, function (res) {
     var docId = res.docId;
@@ -340,18 +352,18 @@ function bindPusherEvent() {
         video: videoArr ? videoArr[0] : undefined,
         audio: audioArr ? audioArr[0] : undefined
       },
-      function () {
+      async function () {
         layer.msg('推流成功');
         calculagraph();
 
-        sdk.republish();
         if (publishing) {
         } else {
-          sdk.start();
+          await sdk.start();
           publishing = true;
 
           sessionStorage.setItem('publishing', 1);
         }
+        sdk.republish();
 
         $('#pusherStart').hide();
         $('#pusherStop').show();
@@ -369,7 +381,9 @@ function bindPusherEvent() {
       layer.msg('停止推流成功');
       sdk.start(2, 1);
       calculagraph('stop');
-      sdk.resetContainer();
+      setTimeout(() => {
+        sdk.resetContainer();
+      }, 1000);
       $('.doc-container .container img').each(function () {
         $(this).click();
       });
@@ -412,12 +426,12 @@ async function loadContainer(conType, color, docId) {
     .parent()
     .prepend(
       '<li class="container active" doc-container="' +
-        elId +
-        '">' +
-        elId +
-        ' <img class="close-doc host-exclusive"  doc-container="' +
-        elId +
-        '" src="./images/close-doc.png" /></li>'
+      elId +
+      '">' +
+      elId +
+      ' <img class="close-doc host-exclusive"  doc-container="' +
+      elId +
+      '" src="./images/close-doc.png" /></li>'
     );
   $('#docs').prepend('<div class="doc-single" id="' + elId + '"></div>');
   var param = {
@@ -437,7 +451,7 @@ async function loadContainer(conType, color, docId) {
     }
   };
   if (conType == 'board') {
-    sdk.createBoard(param);
+    await sdk.createBoard(param);
     setTimeout(function () {
       sdk.selectContainer({
         id: elId
@@ -491,12 +505,12 @@ function loadRemoteBoard(list) {
       .parent()
       .prepend(
         '<li class="container active" doc-container="' +
-          cid +
-          '">' +
-          cid +
-          ' <img class="close-doc host-exclusive"  doc-container="' +
-          cid +
-          '" src="./images/close-doc.png" /></li>'
+        cid +
+        '">' +
+        cid +
+        ' <img class="close-doc host-exclusive"  doc-container="' +
+        cid +
+        '" src="./images/close-doc.png" /></li>'
       );
     $('#docs')
       .prepend('<div class="doc-single" id="' + cid + '"></div>')
