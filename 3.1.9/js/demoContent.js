@@ -344,8 +344,8 @@ function bindPusherEvent() {
         layer.msg('推流成功');
         calculagraph();
 
+        sdk.republish();
         if (publishing) {
-          sdk.republish();
         } else {
           sdk.start();
           publishing = true;
@@ -403,7 +403,7 @@ function calculagraph(type = 'start') {
 /**
  *  加载文档
  */
-function loadContainer(conType, color, docId) {
+async function loadContainer(conType, color, docId) {
   var elId = sdk.createUUID(conType == 'board' ? 'board' : 'document');
   $('#docs>div').addClass('hidden');
   $('#doc-title')
@@ -444,11 +444,11 @@ function loadContainer(conType, color, docId) {
       });
     }, 1000);
   } else {
-    sdk.createDocument(param);
+    await sdk.createDocument(param);
+    sdk.selectContainer({
+      id: elId
+    });
     setTimeout(function () {
-      sdk.selectContainer({
-        id: elId
-      });
       sdk
         .loadDoc({
           docId: docId,
