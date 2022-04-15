@@ -4,21 +4,22 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0 " />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-    <title>文档+点播</title>
+    <title>文档+直播(嘉宾端)</title>
     <link rel="icon" href="https://www.vhallyun.com/favicon.ico" />
-    <script src="./js/pc-common.js?time=1640685634562"></script>
+    <script src="./js/pc-common.js"></script>
     <script>
       if (judgePlatform() === 'mobile') {
-        location.pathname = location.pathname.replace(/doc-vod.html/g, 'h5-doc-vod.html');
+        // location.pathname = 'h5-watch.html'
+        location.pathname = location.pathname.replace(/watch.html/g, 'h5-watch.html');
       }
     </script>
     <link rel="stylesheet" href="./layui/css/layui.css" />
-    <link rel="stylesheet" href="./css/demo.css?time=1640685634562" />
+    <link rel="stylesheet" href="./css/demo.css?time=1650023881630" />
   </head>
 
   <body>
     <section>
-      <div class="title">文档+直播(回放)</div>
+      <div class="title">文档+直播(嘉宾端)</div>
       <form class="layui-form" action="">
         <div class="layui-form-item">
           <label class="layui-form-label">appId</label>
@@ -36,21 +37,6 @@
           </div>
         </div>
         <div class="layui-form-item">
-          <label class="layui-form-label">recordId</label>
-          <div class="layui-input-block input-width">
-            <input
-              type="text"
-              name="recordId"
-              required
-              lay-verify="required"
-              placeholder="请输入recordId"
-              autocomplete="off"
-              class="layui-input"
-              value="e8ba87b0"
-            />
-          </div>
-        </div>
-        <div class="layui-form-item">
           <label class="layui-form-label">channelId</label>
           <div class="layui-input-block input-width">
             <input
@@ -62,6 +48,21 @@
               autocomplete="off"
               class="layui-input"
               value="ch_b9dd840e"
+            />
+          </div>
+        </div>
+        <div class="layui-form-item">
+          <label class="layui-form-label">roomId</label>
+          <div class="layui-input-block input-width">
+            <input
+              type="text"
+              name="roomId"
+              required
+              lay-verify="required"
+              placeholder="请输入roomId"
+              autocomplete="off"
+              class="layui-input"
+              value="lss_706f5237"
             />
           </div>
         </div>
@@ -95,15 +96,22 @@
             />
           </div>
         </div>
+        <div class="layui-form-item">
+          <label class="layui-form-label">liveType</label>
+          <div class="layui-input-block">
+            <input type="radio" name="liveType" value="hls" title="hls" />
+            <input type="radio" name="liveType" value="flv" title="flv" checked />
+          </div>
+        </div>
         <div class="footer">
           <button type="button" class="layui-btn layui-btn-normal" lay-submit lay-filter="formDemo">开始演示</button>
         </div>
       </form>
-      <div id="htmlType" class="html-type">VOD</div>
+      <div id="htmlType" class="html-type">WATCH</div>
     </section>
-  <script type="text/javascript" src="vhall-jssdk-doc-3.2.0.js"></script></body>
+  <script type="text/javascript" src="vhall-jssdk-doc-3.2.1.js"></script></body>
   <script type="text/javascript" src="./js/Qs.min.js"></script>
   <script src="./js/jQuery.min.js"></script>
   <script src=" ./layui/layui.all.js"></script>
-  <script src="./js/demo.js?time=1640685634562"></script>
+  <script src="./js/demo.js?time=1650023881630"></script>
 </html>

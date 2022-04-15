@@ -128,18 +128,33 @@ function bindDocEvent() {
     }
     canOperating = false;
     var color = '#' + Math.floor(Math.random() * 0xffffff).toString(16);
-    loadContainer(conType, color, docId);
-    $('#dialog').hide();
-    $('#defaultDoc').hide();
-    /** 隐藏目录 */
+
     if (conType == 'board') {
-      $('#catalog').children('.list').hide();
-      $('#pageBox').hide();
+      loadDoc();
     } else {
-      $('#pageBox').show();
+      sdk.kit
+        .getDocInfo({ docId })
+        .then(res => {
+          loadDoc();
+        })
+        .catch(err => {
+          layer.msg(err.msg);
+        });
     }
-    if ($('#docs>div').length > 3) {
-      $('#addDoc').hide();
+    function loadDoc() {
+      loadContainer(conType, color, docId);
+      $('#dialog').hide();
+      $('#defaultDoc').hide();
+      /** 隐藏目录 */
+      if (conType == 'board') {
+        $('#catalog').children('.list').hide();
+        $('#pageBox').hide();
+      } else {
+        $('#pageBox').show();
+      }
+      if ($('#docs>div').length > 3) {
+        $('#addDoc').hide();
+      }
     }
   });
   /** 隐藏dialog */
@@ -256,14 +271,14 @@ function bindDocEvent() {
   sdk.on(VHDocSDK.Event.SCALE_TRIGGER, function (info) {
     // console.log('info:', JSON.stringify(info));
     if (info && info.scaleFactor) {
-      let scaleText = ((sdk.currentDoc && sdk.currentDoc.scaleFactor) * 100)
+      let scaleText = (sdk.currentDoc && sdk.currentDoc.scaleFactor) * 100;
       if (scaleText) {
         // 有缩放操作，修改显示百分比
         scaleText = scaleText + '%';
         $('#scaleText').text(scaleText);
       }
     }
-  })
+  });
   /** 文档不存在事件 */
   sdk.on(VHDocSDK.Event.DOCUMENT_NOT_EXIT, function (res) {
     var docId = res.docId;
@@ -426,12 +441,12 @@ async function loadContainer(conType, color, docId) {
     .parent()
     .prepend(
       '<li class="container active" doc-container="' +
-      elId +
-      '">' +
-      elId +
-      ' <img class="close-doc host-exclusive"  doc-container="' +
-      elId +
-      '" src="./images/close-doc.png" /></li>'
+        elId +
+        '">' +
+        elId +
+        ' <img class="close-doc host-exclusive"  doc-container="' +
+        elId +
+        '" src="./images/close-doc.png" /></li>'
     );
   $('#docs').prepend('<div class="doc-single" id="' + elId + '"></div>');
   var param = {
@@ -505,12 +520,12 @@ function loadRemoteBoard(list) {
       .parent()
       .prepend(
         '<li class="container active" doc-container="' +
-        cid +
-        '">' +
-        cid +
-        ' <img class="close-doc host-exclusive"  doc-container="' +
-        cid +
-        '" src="./images/close-doc.png" /></li>'
+          cid +
+          '">' +
+          cid +
+          ' <img class="close-doc host-exclusive"  doc-container="' +
+          cid +
+          '" src="./images/close-doc.png" /></li>'
       );
     $('#docs')
       .prepend('<div class="doc-single" id="' + cid + '"></div>')
