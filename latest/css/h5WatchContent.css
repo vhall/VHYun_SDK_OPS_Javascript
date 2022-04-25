@@ -1,0 +1,188 @@
+html,
+body {
+  font-family: PingFangSC-Regular;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+.hidden {
+  visibility: hidden;
+}
+header {
+  width: 100vw;
+  height: 56.25vw;
+}
+body {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  background-color: #000;
+  display: flex;
+  flex-direction: column;
+}
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.section {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+.section .tabs {
+  box-sizing: border-box;
+  height: 45px;
+  width: 100%;
+  display: flex;
+  background-color: #111;
+}
+.section .tabs li {
+  box-sizing: border-box;
+  width: 50%;
+  height: 100%;
+  color: #999;
+  font-size: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.section .tabs li span {
+  box-sizing: border-box;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.section .tabs .active {
+  color: #1e89e4;
+}
+.section .tabs .active span {
+  border-bottom: 4px solid #1e89e4;
+}
+.section .box {
+  flex-grow: 1;
+  position: relative;
+}
+.section .box .doc-list,
+.section .box .chapters-list {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  box-sizing: border-box;
+  padding: 16px;
+  z-index: 2;
+  overflow-y: auto;
+}
+.section .box .doc-list {
+  position: relative;
+  height: calc(100vw * 9 / 16 + 10px);
+}
+.section .box .doc-list .single-doc {
+  width: calc(100vw - 32px);
+  height: calc((100vw - 32px) * 9 / 16);
+}
+.section .box .doc-list .reset {
+  position: absolute;
+  right: 7px;
+  z-index: 20;
+}
+.section .box .doc-list .reset img {
+  width: 34px;
+  height: 34px;
+}
+.section .box .chapters-list {
+  height: 100%;
+}
+.section .box .chapters-list .list li {
+  color: #f7f7f7;
+}
+.section .box .chapters-list .list li > div:first-child {
+  width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  height: 37px;
+  line-height: 37px;
+}
+.section .box .chapters-list .list li > div:nth-child(2) {
+  font-size: 14px;
+  color: #999;
+}
+.section .box .chapters-list .list .title {
+  font-size: 15px;
+}
+.section .box .chapters-list .list .sub {
+  font-size: 14px;
+  padding: 0 8px;
+}
+.section .box .chapters-list .list .sub > div:first-child {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+}
+.section .box .chapters-list .list .sub > div:first-child img {
+  width: 16px;
+  height: 16px;
+  margin-right: 13px;
+}
+.section .box .chapters-list .list .sub > div:nth-child(2) {
+  padding-left: 32px;
+  font-size: 14px;
+  color: #999;
+}
+.section .box .default-doc {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+}
+.section .box .default-doc img {
+  width: 100px;
+  height: 136px;
+}
+.loading,
+.toast {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 10;
+}
+.loading img,
+.toast img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.toast {
+  display: none;
+}
+.toast .toast-txt {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 50%;
+  color: white;
+  background-color: rgba(0, 0, 0, 0.5);
+  text-align: center;
+  font-size: 14px;
+  border-radius: 4px;
+  padding: 5px 0;
+}
+.visible {
+  visibility: visible;
+}
+.hidden {
+  visibility: hidden;
+}
