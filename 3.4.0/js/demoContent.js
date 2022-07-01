@@ -20,6 +20,23 @@ var timerInterval = null;
 var timing = 0;
 var canOperating = false;
 var docList = {};
+
+var isClick = false;
+
+function checkClick() {
+  return new Promise((resolve, reject) => {
+    if (isClick) {
+      layer.msg('点击过快');
+      reject();
+      return;
+    }
+    isClick = true;
+    resolve();
+    setTimeout(() => {
+      isClick = false;
+    }, 1000);
+  });
+}
 // if (docId) $('input[name=docId]').val(paramObj['docId']);
 layui.use('colorpicker', function () {
   var colorpicker = layui.colorpicker; // 常规使用
@@ -44,7 +61,7 @@ form.verify({
     }
   }
 });
-
+let undoStepInfo = {};
 sdk = VHDocSDK.createInstance(
   {
     appId: appId,
@@ -70,20 +87,25 @@ sdk = VHDocSDK.createInstance(
 function docSuccess() {
   // if (iscontinue == 0) sdk.resetContainer();
   setTimeout(function () {
-    sdk.getContainerInfo().then(function (res) {
-      var list = res.list;
-      if (res.switch_status === 1) {
-        $('input[name=switch]').attr('checked', true);
-        sdk.switchOnContainer();
-      } else {
-        $('input[name=switch]').removeAttr('checked');
-        sdk.switchOffContainer();
-      }
-      form.render();
-      if (iscontinue == 1 || publishing) {
-        loadRemoteBoard(list);
-      }
-    });
+    sdk
+      .getContainerInfo()
+      .then(function (res) {
+        var list = res.list;
+        if (res.switch_status === 1) {
+          $('input[name=switch]').attr('checked', true);
+          sdk.switchOnContainer();
+        } else {
+          $('input[name=switch]').removeAttr('checked');
+          sdk.switchOffContainer();
+        }
+        form.render();
+        if (iscontinue == 1 || publishing) {
+          loadRemoteBoard(list);
+        }
+      })
+      .catch(res => {
+        layer.msg(res.msg);
+      });
   }, 200);
 
   bindDocEvent();
@@ -177,7 +199,7 @@ function bindDocEvent() {
       $('#toolBox').show();
     });
 
-  $('.tool').click(function () {
+  $('.tool').click(async function () {
     var _this = $(this);
     var type = _this.attr('type');
     var detail = _this.attr('detail');
@@ -197,6 +219,20 @@ function bindDocEvent() {
         break;
       case 'stroke':
         sdk[detail]({ color: _this.children('div').css('backgroundColor') });
+        break;
+      case 'undo':
+        if (undoStepInfo.undoStep == 0) {
+          break;
+        }
+        await checkClick();
+        sdk[detail]();
+        break;
+      case 'redo':
+        if (undoStepInfo.redoStep == 0) {
+          break;
+        }
+        await checkClick();
+        sdk[detail]();
         break;
       default:
         break;
@@ -277,6 +313,22 @@ function bindDocEvent() {
         scaleText = scaleText + '%';
         $('#scaleText').text(scaleText);
       }
+    }
+  });
+  sdk.on(VHDocSDK.Event.UNDO_STEP_CHANGE, function (info) {
+    console.log('----撤销恢复信息-----', info);
+    undoStepInfo = info;
+    if (info.undoStep == 0 && !$('#undoBtn').hasClass('disable')) {
+      $('#undoBtn').addClass('disable');
+    }
+    if (info.redoStep == 0 && !$('#redoBtn').hasClass('disable')) {
+      $('#redoBtn').addClass('disable');
+    }
+    if (info.undoStep > 0 && $('#undoBtn').hasClass('disable')) {
+      $('#undoBtn').removeClass('disable');
+    }
+    if (info.redoStep > 0 && $('#redoBtn').hasClass('disable')) {
+      $('#redoBtn').removeClass('disable');
     }
   });
   /** 文档不存在事件 */
@@ -398,6 +450,9 @@ function bindPusherEvent() {
       calculagraph('stop');
       setTimeout(() => {
         sdk.resetContainer();
+        $('input[name=switch]').removeAttr('checked');
+        $('.layui-form-switch').removeClass('layui-form-onswitch');
+        sdk.switchOffContainer();
       }, 1000);
       $('.doc-container .container img').each(function () {
         $(this).click();

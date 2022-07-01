@@ -79,9 +79,25 @@ ul {
   position: relative;
   height: calc(100vw * 9 / 16 + 10px);
 }
+.section .box .doc-list.horizontal {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 999;
+  background-color: #000;
+  padding: 0;
+}
 .section .box .doc-list .single-doc {
   width: calc(100vw - 32px);
   height: calc((100vw - 32px) * 9 / 16);
+}
+.section .box .doc-list .doc-single.horizontal {
+  top: 50%;
+  transform: translateY(-50%);
 }
 .section .box .doc-list .reset {
   position: absolute;
@@ -91,6 +107,10 @@ ul {
 .section .box .doc-list .reset img {
   width: 34px;
   height: 34px;
+}
+.section .box .doc-list .reset img.rotate {
+  width: 28px;
+  height: 28px;
 }
 .section .box .chapters-list {
   height: 100%;

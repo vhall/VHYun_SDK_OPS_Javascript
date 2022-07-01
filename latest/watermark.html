@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <title>水印demo</title>
+    <link rel="icon" href="https://www.vhallyun.com/favicon.ico" />
+    <link rel="stylesheet" href="./css/watermark.css" />
+    <link rel="stylesheet" href="./layui/css/layui.css" />
+  </head>
+
+  <body>
+    <ul id="original" style="display: none">
+      <li id="appId">d317f559</li>
+      <li id="recordId">e8ba87b0</li>
+      <li id="accountId">406</li>
+      <li id="cuePointUrl"></li>
+      <li id="token">access:d317f559:b3acfa862ae09232</li>
+    </ul>
+
+    <div class="main" id="main">
+      <div class="title">水印设置</div>
+      <div class="content">
+        <div class="left">
+          <form action="" class="layui-form">
+            <div class="layui-form-item">
+              <label class="layui-form-label">水印开关</label>
+              <div class="layui-input-block">
+                <input type="checkbox" name="switch" lay-skin="switch" lay-filter="switch" />
+              </div>
+            </div>
+            <div class="layui-form-item">
+              <label class="layui-form-label">水印内容</label>
+              <div class="layui-input-block input-width">
+                <input
+                  id="text"
+                  type="text"
+                  name="text"
+                  onchange="textChange()"
+                  required
+                  lay-verify="required"
+                  placeholder="请输入水印内容"
+                  autocomplete="off"
+                  class="layui-input"
+                  value="版权所有，盗版必究"
+                />
+              </div>
+            </div>
+            <div class="layui-form-item">
+              <label class="layui-form-label">字体大小</label>
+              <div class="layui-input-block input-width">
+                <input id="fontSize" onchange="fontSizeChange()" type="number" name="fontSize" required lay-verify="required" autocomplete="off" value="12" class="layui-input" />
+              </div>
+            </div>
+            <div class="layui-form-item">
+              <label class="layui-form-label">选择颜色</label>
+              <div class="layui-input-block input-width">
+                <div id="defaultColor"></div>
+              </div>
+            </div>
+            <div class="layui-form-item">
+              <label class="layui-form-label">不透明度</label>
+              <div class="layui-input-block input-width">
+                <div id="slideOpacity"></div>
+              </div>
+            </div>
+            <div class="layui-form-item">
+              <label class="layui-form-label">旋转角度</label>
+              <div class="layui-input-block input-width">
+                <div id="slideRotate"></div>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="right">
+          <div id="board"></div>
+        </div>
+      </div>
+    </div>
+  <script type="text/javascript" src="vhall-jssdk-doc-3.4.0.js"></script></body>
+  <script src="./js/jQuery.min.js"></script>
+  <script src=" ./layui/layui.all.js"></script>
+  <script src="./js/watermark.js?time=1656643846611"></script>
+</html>

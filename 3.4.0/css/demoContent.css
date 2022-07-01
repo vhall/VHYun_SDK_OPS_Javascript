@@ -657,3 +657,9 @@ input[type='number']::-webkit-outer-spin-button {
 .layui-form-select dl {
   max-height: 180px;
 }
+#undoBtn.disable {
+  opacity: 0.5;
+}
+#redoBtn.disable {
+  opacity: 0.5;
+}

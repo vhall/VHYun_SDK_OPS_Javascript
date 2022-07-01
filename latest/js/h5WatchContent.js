@@ -60,6 +60,42 @@ function bindDocEvent() {
   $('#reset').click(function () {
     sdk.zoomReset();
   });
+  $('#rotate').click(function () {
+    if ($('#docs').hasClass('horizontal')) {
+      // 切换横屏
+      $('#docs').removeClass('horizontal');
+
+      let width = $('#docs').width();
+      let height = (width * 9) / 16;
+
+      sdk.setSize(width, height);
+      sdk.rotate(0);
+
+      // 设置容器宽高
+      $.each($('.doc-single'), function (index, item) {
+        $(this).css({
+          width: width + 'px',
+          height: height + 'px'
+        });
+        $(this).removeClass('horizontal');
+      });
+    } else {
+      // 切换竖屏
+      $('#docs').addClass('horizontal');
+
+      sdk.setSize((window.innerWidth * 16) / 9, window.innerWidth);
+      sdk.rotate(90);
+
+      // 设置容器宽高
+      $.each($('.doc-single'), function (index, item) {
+        $(this).css({
+          width: window.innerWidth + 'px',
+          height: (window.innerWidth * 16) / 9 + 'px'
+        });
+        $(this).addClass('horizontal');
+      });
+    }
+  });
   $('#showDocList').click(function () {
     $(this).addClass('active').siblings().removeClass('active');
     console.log('switchStatus', switchStatus);
